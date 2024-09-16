@@ -8,7 +8,7 @@
 
         <!-- Twitter Cards -->
         <meta name="twitter:title" content="Me Namora?! " />
-        <meta name="twitter:description" content=" 'SIM! Eu Aceito. &#10084'                                          Daniel! Carolina Moraes acabou de aceitar seu pedido. Lembre de enviar flores! ;)          Usuario: Carolina   Senha: 123456" />
+        <meta name="twitter:description" content=" 'SIM! Eu Aceito. &#10084' Daniel! Carolina Moraes acabou de aceitar seu pedido. Lembre de enviar flores! ;) Usuario: Carolina Senha: 123456" />
         <meta name="twitter:image" content="https://alexaquino.github.io/assets/css/images/facebook_imagem.png" />
         <meta name="twitter:card" content="summary_large_image" />
 
@@ -19,7 +19,7 @@
         <meta property="og:image:height" content="315" />
         <meta property="og:site_name" content="alexaquino.space" />
         <meta property="og:title" content="Me Namora?!" />
-        <meta property="og:description" content=" 'SIM! Eu Aceito. &#10084'                                          Daniel! Carolina Moraes acabou de aceitar seu pedido. Lembre de enviar flores! ;)          Usuario: Carolina   Senha: 123456" />
+        <meta property="og:description" content=" 'SIM! Eu Aceito. &#10084' Daniel! Carolina Moraes acabou de aceitar seu pedido. Lembre de enviar flores! ;) Usuario: Carolina Senha: 123456" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://alexaquino.github.io/" />
         <meta property="fb:app_id" content="1140424696044800" />
@@ -28,7 +28,23 @@
         <!-- CSS -->
         <link rel="stylesheet" href="assets/css/main.css"/>
 		<link rel="stylesheet" href="assets/css/font-awesome-animation.min.css">
+		<style>
+			#countdown {
+				font-size: 2em;
+				color: #ff69b4;
+				margin-top: 20px;
+			}
 
+			#waiting-message {
+				font-size: 1.2em;
+				color: #ffffff;
+				margin-bottom: 20px;
+			}
+
+			#content {
+				display: none;
+			}
+		</style>
 	</head>
 	<body class="loading">
 		<!-- Música de Fundo -->
@@ -39,21 +55,53 @@
 			<div id="main">
 				<!-- Header -->
 				<header id="header">
-				    <h1>Em construção, termina dia 19/09!</h1>
-					<!-- <p>"Cada momento longe de você é uma eternidade"</p>
-					<p>"Abre os braços, aceita meu amor, e me namora de verdade"</p>
-				    <nav>
-				        <ul>
-				            <li><a href="login.html" class="icon fa-heart faa-pulse animated"><span class="label">heart</span></a></li>
-				            <li><a href="#" class="icon fa-times-circle"><span class="label">times</span></a></li>
-				        </ul>
-				    </nav> -->
+				    <h1 id="countdown">Em construção, termina dia 19/09!</h1>
+					<div id="content">
+						<h1>Me Namora?</h1>
+						<p>"Cada momento longe de você é uma eternidade"</p>
+						<p>"Abre os braços, aceita meu amor, e me namora de verdade"</p>
+					    <nav>
+					        <ul>
+					            <li><a href="login.html" class="icon fa-heart faa-pulse animated"><span class="label">heart</span></a></li>
+					            <li><a href="#" class="icon fa-times-circle"><span class="label">times</span></a></li>
+					        </ul>
+					    </nav>
+				    </div>
 				</header>
 				<!-- Footer -->
 				<footer id="footer"><span class="icon fa-volume-up"><span class="label">volume-up</span></footer>
             </div>
 		</div>
 		<script>
+			// Data limite para o contador (17/09 às 20:25:59)
+			var countDownDate = new Date("Sep 17, 2024 20:59:59").getTime();
+
+			// Atualiza o contador a cada 1 segundo
+			var x = setInterval(function() {
+
+				// Data e hora atual
+				var now = new Date().getTime();
+
+				// Calcula a distância entre a data atual e a data limite
+				var distance = countDownDate - now;
+
+				// Cálculos para dias, horas, minutos e segundos
+				var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+				var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+				var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+				var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+				// Exibe o resultado no elemento com id="countdown"
+				document.getElementById("countdown").innerHTML = "Faltam " + days + " dias. " + hours + " horas. " + minutes + " minutos. " + seconds + " segundos";
+
+				// Se o contador terminar, exibe o conteúdo e oculta o restante
+				if (distance < 0) {
+					clearInterval(x);
+					document.getElementById("countdown").style.display = "none";
+					document.getElementById("content").style.display = "block";
+				}
+			}, 1000);
+
 			window.onload = function() { document.body.className = ''; }
 			window.ontouchmove = function() { return false; }
 			window.onorientationchange = function() { document.body.scrollTop = 0; }
